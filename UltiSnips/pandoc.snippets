@@ -1,0 +1,482 @@
+extends markdown
+priority 0
+
+###############################
+# Reserach Diary Tex Snippets #
+###############################
+
+# Keys are set in coofdinate to Greek's keyboard layout
+#snippet "\\G " "Gamma" Air
+#\Gamma 
+#endsnippet
+
+# snippet note "Generate Note Tmplate"
+# ---
+# title: "$1"
+# date: "$2"
+# author: "Cameron Bannasch"
+# header-includes:
+#   - \usepackage{cancel}
+#   - \usepackage[margin=1in,footskip=0.25in]{geometry}
+#   - \usepackage{tcolorbox}
+#   - \tcbuselibrary{skins}
+# output:
+#     pdf_document
+# ---
+# 
+# $3
+# endsnippet
+
+snippet note "Note template"
+`!p
+from datetime import datetime
+snip.rv = "% " + snip.basename + "\n% " + datetime.now().strftime("%b %d, %Y") + "\n% Cameron Bannasch\n\n"`
+endsnippet
+
+snippet ex "Example"
+\begin{tcolorbox}[enhanced, colback=black!02!white,boxrule=1pt]
+\textbf{Example:}
+$$
+$1
+$$
+\textit{$2}
+\end{tcolorbox}
+$3
+endsnippet
+
+context "math()"
+snippet @G "Gamma" iA
+\Gamma
+endsnippet
+
+context "math()"
+snippet @D "Delta" iA
+\Delta
+endsnippet
+
+context "math()"
+snippet @L "Lambda" iA
+\Lambda
+endsnippet
+
+context "math()"
+snippet @F "Phi" iA
+\Phi
+endsnippet
+
+context "math()"
+snippet @P "Pi" iA
+\Pi
+endsnippet
+
+context "math()"
+snippet @C "Psi" iA
+\Psi
+endsnippet
+
+context "math()"
+snippet @S "Sigma" iA
+\Sigma
+endsnippet
+
+context "math()"
+snippet @T "Theta" iA
+\Theta
+endsnippet
+
+context "math()"
+snippet @Y "Upsilon" iA
+\Upsilon
+endsnippet
+
+context "math()"
+snippet @J "Xi" iA
+\Xi
+endsnippet
+
+context "math()"
+snippet @V "Omega" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet @a "alpha" iA
+\alpha
+endsnippet
+
+context "math()"
+snippet @b "beta" iA
+\beta
+endsnippet
+
+context "math()"
+snippet @g "gamma" iA
+\gamma
+endsnippet
+
+context "math()"
+snippet @d "delta" iA
+\delta
+endsnippet
+
+context "math()"
+snippet @e "epsilon" iA
+\epsilon
+endsnippet
+
+context "math()"
+snippet @z "zeta" iA
+\zeta
+endsnippet
+
+context "math()"
+snippet @h "eta" iA
+\eta
+endsnippet
+
+context "math()"
+snippet @t "theta" iA
+\theta
+endsnippet
+
+context "math()"
+snippet @i "iota" iA
+\iota
+endsnippet
+
+context "math()"
+snippet @k "kappa" iA
+\kappa
+endsnippet
+
+context "math()"
+snippet @l "lambda" iA
+\lambda
+endsnippet
+
+context "math()"
+snippet @m "mu" iA
+\mu
+endsnippet
+
+context "math()"
+snippet @n "nu" iA
+\nu
+endsnippet
+
+context "math()"
+snippet @j "xi" iA
+\xi
+endsnippet
+
+context "math()"
+snippet @p "pi" iA
+\pi
+endsnippet
+
+context "math()"
+snippet @r "rho" iA
+\rho
+endsnippet
+
+context "math()"
+snippet @s "sigma" iA
+\sigma
+endsnippet
+
+context "math()"
+snippet @t "tau" iA
+\tau
+endsnippet
+
+context "math()"
+snippet @y "upsilon" iA
+\upsilon
+endsnippet
+
+context "math()"
+snippet @f "phi" iA
+\phi
+endsnippet
+
+context "math()"
+snippet @x "chi" iA
+\chi
+endsnippet
+
+context "math()"
+snippet @c "psi" iA
+\psi
+endsnippet
+
+context "math()"
+snippet @o "omega" iA
+\omega
+endsnippet
+
+context "math()"
+snippet @dg "digamma" iA
+\digamma
+endsnippet
+
+context "math()"
+snippet @ve "varepsilon" iA
+\varepsilon
+endsnippet
+
+context "math()"
+snippet @vf "varphi" iA
+\varphi
+endsnippet
+
+context "math()"
+snippet @vp "varpi" iA
+\varpi
+endsnippet
+
+context "math()"
+snippet @vr "varrho" iA
+\varrho
+endsnippet
+
+context "math()"
+snippet @vs "varsigma" iA
+\varsigma
+endsnippet
+
+context "math()"
+snippet @vu "vartheta" iA
+\vartheta
+endsnippet
+#-----------------------------------------------------------------------
+snippet () "left( right)" Ai
+(${1:${VISUAL}})
+endsnippet
+
+snippet [] "left[ right]" Ai
+[${1:${VISUAL}}]
+endsnippet
+
+snippet {} "left{ right}" Ai
+{${1:${VISUAL}}}
+endsnippet
+
+# Not work
+#snippet !\"\"! "left" right"" Air
+#"${1:${VISUAL}}"
+#endsnippet
+
+snippet || "left| right|" Ai
+|${1:${VISUAL}}|
+endsnippet
+
+snippet (] "left( right]" Ai
+(${1:${VISUAL}}]
+endsnippet
+
+snippet [) "left[ right)" Ai
+[${1:${VISUAL}})
+endsnippet
+
+context "math()"
+snippet "_($)?" "_left{ right}" Ar
+_{${1:${VISUAL}}}
+endsnippet
+
+context "math()"
+snippet "\^($)?" "^left{ right}" Ar
+^{${1:${VISUAL}}}
+endsnippet
+
+snippet $ "left$ right$" Ai
+$${1:${VISUAL}}$
+endsnippet
+
+#snippet "[^\\]\(" "left( right)" Air
+#(${1:${VISUAL}})
+#endsnippet
+
+snippet \l( "left\( right\)" Ai
+\left( ${1:${VISUAL}} \right)
+endsnippet
+
+snippet \{ "left\{ right\}" Ai
+\\{${1:${VISUAL}}\\}
+endsnippet
+
+snippet \l[ "left\[ right\]" Ai
+\\[ ${1:${VISUAL}} \\]
+endsnippet
+
+snippet \l| "left\| right\|" Ai
+\left| ${1:${VISUAL}} \right|
+endsnippet
+
+snippet \l{ "left\{ right\}" Ai
+\left\\{ ${1:${VISUAL}} \right\\}
+endsnippet
+
+# Some bug see \textLabel{
+#snippet "[^\\_]\{" "left{ right}" Air
+#{${1:${VISUAL}}} 
+#endsnippet
+
+snippet \[ "left\[ right\]" Ai
+\[ ${1:${VISUAL}} \]
+endsnippet
+
+#snippet "[^\\][" "left[ right]" w
+#\left[ ${1:${VISUAL}} \right]
+#endsnippet
+
+context "math()"
+snippet norm "Norm" w
+\norm{$1}
+endsnippet
+
+context "math()"
+snippet lim "Limit" w
+\lim_{$1\to $2}
+endsnippet
+
+context "math()"
+snippet int "Integral" w
+\int_{${1:0}}^{${2:\infty}} $3 \, dx
+endsnippet
+
+context "math()"
+snippet sum "Sum" w
+\sum_{${1:n=0}}^{${2:\infty}}
+endsnippet
+
+context "math()"
+snippet prod "Product" w
+\prod_{${1:1}}^{${2:\infty}}
+endsnippet
+
+context "math()"
+snippet frac "Fraction" w
+\frac{${1:${VISUAL:1}}}{${2:n}}
+endsnippet
+
+context "math()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+priority 1000
+snippet '^.*\)/' "() Fraction" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i -= 1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+snippet sqrt "Sqrt" w
+\sqrt{${1}}
+endsnippet
+
+# Not use
+snippet par "partial" i
+\partial
+endsnippet
+
+#snippet \Lap "Laplacian" i
+#\triangle
+#endsnippet
+
+#snippet \dA "d'Alembertian" i
+#\square
+#endsnippet
+
+snippet url "Url" w
+\url{${1:${VISUAL}}}
+endsnippet
+
+snippet label "Label" i
+\label{${1:${VISUAL}}}
+endsnippet
+
+snippet ref "Reference" w
+\ref{${1:${VISUAL}}}
+endsnippet
+
+snippet em "Emphasis" w
+\emph{${1:${VISUAL}}}
+endsnippet
+
+snippet tbf "Text boldface" w
+\textbf{${1:${VISUAL}}}
+endsnippet
+
+snippet mbf "Math boldface" w
+\mathbf{${1:${VISUAL}}}
+endsnippet
+
+snippet tit "Text italics" w
+\textit{${1:${VISUAL}}}
+endsnippet
+
+snippet te "Text" w
+\text{${1:${VISUAL}}}
+endsnippet
+
+snippet ol "Overline" w
+\overline{ ${1:${VISUAL:1}} }
+endsnippet
+
+snippet ul "Underline" w
+\\underline{${1:${VISUAL:1}}}$0
+endsnippet
+
+snippet us "Underset" w
+\\underset{$2}{${1:${VISUAL:1}}}$0
+endsnippet
+
+snippet ub "Underbrace" w
+\\underbrace{${1:${VISUAL:1}}}_{$2}$0
+endsnippet
+
+snippet ~~ "Aprox Equal"
+\approx
+endsnippet
+
+
+snippet sympy "sympy block " w
+sympy $1 sympy$0
+endsnippet
+
+priority 10000
+snippet 'sympy(.*)sympy' "evaluate sympy" wr
+`!p
+from sympy import *
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+init_printing()
+snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
+    .replace('^', '**') \
+    .replace('{', '(') \
+    .replace('}', ')') + ')')
+`
+endsnippet
+
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+
+endglobal
