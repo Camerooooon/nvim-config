@@ -1,10 +1,14 @@
+vim.cmd.colorscheme 'nordic'
+
+-- vim.cmd([[colorscheme everforest]])
+
 --require("catppuccin").setup({
---    flavour = "frappe", -- latte, frappe, macchiato, mocha
+--    flavour = "mocha", -- latte, frappe, macchiato, mocha
 --    background = { -- :h background
 --        light = "latte",
 --        dark = "mocha",
 --    },
---    transparent_background = true, -- disables setting the background color.
+--    transparent_background = false, -- disables setting the background color.
 --    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 --    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
 --    dim_inactive = {
@@ -45,44 +49,3 @@
 ---- setup must be called before loading
 --vim.cmd.colorscheme "catppuccin"
 
-require('onedark').setup  {
-    -- Main options --
-    style = 'dark', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-    transparent = false,  -- Show/hide background
-    term_colors = true, -- Change terminal color as per the selected theme style
-    ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
-    cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
-
-    -- toggle theme style ---
-    toggle_style_key = "<leader>o", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-    toggle_style_list = {'warmer', 'light'}, -- List of styles to toggle between
-
-    -- Change code style ---
-    -- Options are italic, bold, underline, none
-    -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
-    code_style = {
-        comments = 'italic',
-        keywords = 'none',
-        functions = 'none',
-        strings = 'none',
-        variables = 'none'
-    },
-
-    -- Lualine options --
-    lualine = {
-        transparent = false, -- lualine center bar transparency
-    },
-
-    -- Custom Highlights --
-    colors = {}, -- Override default colors
-    highlights = {}, -- Override highlight groups
-
-    -- Plugins Config --
-    diagnostics = {
-        darker = true, -- darker colors for diagnostic
-        undercurl = false,   -- use undercurl instead of underline for diagnostics
-        background = false,    -- use background color for virtual text
-    },
-}
-
-require('onedark').load()

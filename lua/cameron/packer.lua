@@ -66,4 +66,16 @@ return require('packer').startup(function(use)
     use {'rcarriga/nvim-notify'}
     use ('ThePrimeagen/vim-be-good')
     use {'nvim-telescope/telescope-ui-select.nvim'}
+    use({
+        "neanias/everforest-nvim",
+        -- Optional; default configuration will be used if setup isn't called.
+        config = function()
+            require("everforest").setup()
+        end,
+    })
+    use ('AlexvZyl/nordic.nvim')
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
 end)
