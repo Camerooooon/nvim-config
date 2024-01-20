@@ -2,7 +2,19 @@ function pandoc_async()
 
   local filename = vim.fn.expand('%:t:r')
     print("Running pandoc command asynchronously for file: " .. filename .. "...")
-  local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf" --lua-filter /home/cameron/pandoc_lua_filters/wiki_links.lua', {
+    local template_option
+
+    if filename:find("Essay") then
+        template_option = '--template=/home/cameron/Notebook/templates/mla.latex --citeproc --csl=/home/cameron/csl/mla8.csl'
+    elseif filename:find("Paper") then
+        template_option = '--template=/home/cameron/Notebook/templates/paper.latex'
+    else
+        template_option = '--template=/home/cameron/Notebook/templates/default.latex'
+    end
+
+
+    --local template_option = filename:find("Essay") and '--template=/home/cameron/Notebook/templates/mla.latex --citeproc --csl=/home/cameron/csl/mla8.csl' or ''
+    local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf" --from=markdown -F /home/cameron/.config/nvim/latex_filters/chem.py --lua-filter /home/cameron/pandoc_lua_filters/wiki_links.lua ' .. template_option , {
     on_stderr = function(_, data, _)
       print(data)
     end,

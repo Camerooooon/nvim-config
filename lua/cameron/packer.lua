@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
     use ('lervag/vimtex')
     use("quangnguyen30192/cmp-nvim-ultisnips")
     use { "catppuccin/nvim", as = "catppuccin" }
+    use 'shaunsingh/nord.nvim'
     use ('simrat39/rust-tools.nvim')
     use ('nvim-lua/lsp-status.nvim')
     use {'folke/zen-mode.nvim'}
@@ -62,5 +63,7 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
     use {'folke/twilight.nvim'}
+    use {'rcarriga/nvim-notify'}
     use ('ThePrimeagen/vim-be-good')
+    use {'nvim-telescope/telescope-ui-select.nvim'}
 end)
