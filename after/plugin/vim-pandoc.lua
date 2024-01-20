@@ -2,7 +2,7 @@ function pandoc_async()
 
   local filename = vim.fn.expand('%:t:r')
     print("Running pandoc command asynchronously for file: " .. filename .. "...")
-  local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf" --lua-filter /home/cameron/pandoc_lua_filters/wiki_links.lua', {
+  local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf"', {
     on_stderr = function(_, data, _)
       print(data)
     end,
