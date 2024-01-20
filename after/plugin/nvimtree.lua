@@ -15,24 +15,16 @@ sync_root_with_cwd = false,
 reload_on_bufenter = false,
 respect_buf_cwd = false,
 on_attach = "disable", -- function(bufnr). If nil, will use the deprecated mapping strategy
-    remove_keymaps = false, -- boolean (disable totally or not) or list of key (lhs)
     view = {
         adaptive_size = true,
         centralize_selection = false,
         width = 20,
-        hide_root_folder = false,
         side = "left",
         preserve_window_proportions = false,
         number = false,
         relativenumber = false,
         signcolumn = "yes",
         -- @deprecated
-        mappings = {
-            custom_only = false,
-            list = {
-                -- user mappings go here
-            },
-        },
         float = {
             enable = false,
             open_win_config = {
