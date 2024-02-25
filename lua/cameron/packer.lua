@@ -78,4 +78,12 @@ return require('packer').startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
+    use {
+        "nvim-neorg/neorg",
+        run = ":Neorg sync-parsers",
+        requires = "nvim-lua/plenary.nvim",
+    }
+    use 'jbyuki/nabla.nvim'
+    use '3rd/image.nvim'
+    use 'nvim-neorg/tree-sitter-norg'
 end)

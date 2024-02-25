@@ -9,12 +9,13 @@ function pandoc_async()
     elseif filename:find("Paper") then
         template_option = '--template=/home/cameron/Notebook/templates/paper.latex'
     else
-        template_option = '--template=/home/cameron/Notebook/templates/default.latex'
+        --template_option = '--template=/home/cameron/Notebook/templates/default.latex'
+        template_option = ''
     end
 
 
     --local template_option = filename:find("Essay") and '--template=/home/cameron/Notebook/templates/mla.latex --citeproc --csl=/home/cameron/csl/mla8.csl' or ''
-    local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf" --from=markdown -F /home/cameron/.config/nvim/latex_filters/chem.py --lua-filter /home/cameron/pandoc_lua_filters/wiki_links.lua ' .. template_option , {
+    local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf" --from=markdown ' .. template_option , {
     on_stderr = function(_, data, _)
       print(data)
     end,
