@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
         }
     use ("vim-pandoc/vim-pandoc-syntax")
     use ('skywind3000/asyncrun.vim')
-    use ('SirVer/ultisnips')
+    use {'SirVer/ultisnips'}
     use ('lervag/vimtex')
     use("quangnguyen30192/cmp-nvim-ultisnips")
     use { "catppuccin/nvim", as = "catppuccin" }
@@ -78,12 +78,10 @@ return require('packer').startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
-    use {
-        "nvim-neorg/neorg",
-        run = ":Neorg sync-parsers",
-        requires = "nvim-lua/plenary.nvim",
-    }
     use 'jbyuki/nabla.nvim'
     use '3rd/image.nvim'
     use 'nvim-neorg/tree-sitter-norg'
+    use 'sts10/vim-pink-moon'
+    use "rebelot/kanagawa.nvim"
+    use 'lewis6991/gitsigns.nvim'
 end)
