@@ -73,13 +73,15 @@ end
 
 vim.api.nvim_exec([[
 let g:pandoc#filetypes#handled = ["markdown"]
-let g:pandoc#modules#enabled=["folding", "formatting"]
+let g:pandoc#modules#enabled=["folding"]
 let g:pandoc#filetypes#pandoc_markdown = 0
 let g:pandoc#folding#fold_yaml = 1
 let g:pandoc#folding#foldlevel_yaml = 1
 let g:pandoc#folding#mode = "stacked"
 let g:pandoc#command#autoexec_on_writes = 0
-let g:pandoc#syntax#codeblocks#embeds#langs = ["rust", "python"]
+let g:pandoc#command#autoexec_on_writes = 0
+let g:pandoc#command#autoexec_command = ""
+let g:pandoc#syntax#codeblocks#embeds#langs = ["rust", "python", "c"]
 
 " For some reason folding will not work unless PandocFolding stacked is called after the document is loaded
 augroup AutoPandocFolding
