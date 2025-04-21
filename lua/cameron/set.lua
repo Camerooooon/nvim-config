@@ -24,3 +24,14 @@ vim.wo.fillchars='eob: '
 
 vim.opt.title = true
 vim.opt.cmdheight = 0
+
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    callback = function()
+        vim.opt.cmdheight = 1
+    end,
+})
+vim.api.nvim_create_autocmd("RecordingLeave", {
+    callback = function()
+        vim.opt.cmdheight = 0
+    end,
+})
