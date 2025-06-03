@@ -7,8 +7,6 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
--- SPACE+L opens the .pdf file in Zathura
-vim.keymap.set("n", "<leader>l", "<cmd>:AsyncRun zathura ''%<.pdf''<CR>")
 
 vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=']a<c-g>u")
 -- inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u

@@ -23,7 +23,8 @@ vim.opt.scrolloff = 8
 vim.wo.fillchars='eob: '
 
 vim.opt.title = true
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
+vim.opt.showmode = false
 
 vim.api.nvim_create_autocmd("RecordingEnter", {
     callback = function()

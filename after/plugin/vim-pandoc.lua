@@ -98,7 +98,8 @@ augroup END
 
 ]], false)
 
-vim.api.nvim_set_keymap("n", "<leader>t", ":lua FindAndOpenFile()<CR>", { noremap = true, silent = true })
+-- I don't use this anymore
+-- vim.api.nvim_set_keymap("n", "<leader>t", ":lua FindAndOpenFile()<CR>", { noremap = true, silent = true })
 function FindAndOpenFile()
     -- Get the current line and cursor position
     local line = vim.api.nvim_get_current_line()
