@@ -43,28 +43,39 @@ end
 -- 	})
 -- }
 
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function()
-    local bufmap = function(mode, lhs, rhs)
-      local opts = {buffer = true}
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        -- Buffer local mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local opts = { buffer = ev.buf }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        vim.keymap.set('n', '<space>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, opts)
+        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<space>f', function()
 
-    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-    bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-    bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-    bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-    bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
-    bufmap('n', '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>')
-    bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-  end
+            vim.lsp.buf.format { async = true }
+        end, opts)
+    end,
 })
 
 --- lsp.on_attach(function(client, bufnr)
@@ -98,34 +109,38 @@ lspconfig.clangd.setup {
      cmd = {"/usr/bin/clangd", "--query-driver=**", "--clang-tidy", "--enable-config", "--background-index"},
 }
 
-lspconfig.pylsp.setup {
-    on_attach=on_attach,
-    filetypes = {'python'},
-    settings = {
-        configurationSources = {"flake8"},
-        formatCommand = {"black"},
-        pylsp = {
-            plugins = {
-                -- jedi_completion = {fuzzy = true},
-                -- jedi_completion = {eager=true},
-                jedi_completion = {
-                    include_params = true,
-                },
-                jedi_signature_help = {enabled = true},
-                jedi = {
-                    extra_paths = {'~/projects/work_odoo/odoo14', '~/projects/work_odoo/odoo14'},
-                    -- environment = {"odoo"},
-                },
-                pyflakes={enabled=true},
-                -- pylint = {args = {'--ignore=E501,E231', '-'}, enabled=true, debounce=200},
-                pylsp_mypy={enabled=false},
-                pycodestyle={
-                    enabled=true,
-                    ignore={'E501', 'E231', 'W391', 'E305', 'E302', 'W293', 'E303'}, -- disable annoying errors
-                    maxLineLength=120},
-                yapf={enabled=true}
-            }
-        }
-    }
+lspconfig.pyright.setup {
+
 }
+
+-- lspconfig.pylsp.setup {
+--     on_attach=on_attach,
+--     filetypes = {'python'},
+--     settings = {
+--         configurationSources = {"flake8"},
+--         formatCommand = {"black"},
+--         pylsp = {
+--             plugins = {
+--                 -- jedi_completion = {fuzzy = true},
+--                 -- jedi_completion = {eager=true},
+--                 jedi_completion = {
+--                     include_params = true,
+--                 },
+--                 jedi_signature_help = {enabled = true},
+--                 jedi = {
+--                     extra_paths = {'~/projects/work_odoo/odoo14', '~/projects/work_odoo/odoo14'},
+--                     -- environment = {"odoo"},
+--                 },
+--                 pyflakes={enabled=true},
+--                 -- pylint = {args = {'--ignore=E501,E231', '-'}, enabled=true, debounce=200},
+--                 pylsp_mypy={enabled=false},
+--                 pycodestyle={
+--                     enabled=true,
+--                     ignore={'E501', 'E231', 'W391', 'E305', 'E302', 'W293', 'E303'}, -- disable annoying errors
+--                     maxLineLength=120},
+--                 yapf={enabled=true}
+--             }
+--         }
+--     }
+-- }
 
