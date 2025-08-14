@@ -87,4 +87,9 @@ return require('packer').startup(function(use)
     use "rebelot/kanagawa.nvim"
     use 'lewis6991/gitsigns.nvim'
     use 'echasnovski/mini.nvim'
+    use 'FabijanZulj/blame.nvim'
+    use 'eandrju/cellular-automaton.nvim'
+    use 'max397574/startup.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
+    use 'stevearc/aerial.nvim'
 end)

@@ -71,10 +71,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
         vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function()
+        -- vim.keymap.set('n', '<space>f', function()
 
-            vim.lsp.buf.format { async = true }
-        end, opts)
+        -- vim.lsp.buf.format { async = true }
+        -- end, opts)
     end,
 })
 
@@ -109,9 +109,21 @@ lspconfig.clangd.setup {
      cmd = {"/usr/bin/clangd", "--query-driver=**", "--clang-tidy", "--enable-config", "--background-index"},
 }
 
-lspconfig.pyright.setup {
+-- vim.lsp.enable('jedi_language_server')
 
-}
+vim.lsp.enable('basedpyright')
+
+vim.lsp.config('basedpyright', {
+    cmd = {"/home/cameron/.local/share/nvim/mason/bin/basedpyright-langserver", "--stdio", "--verbose"},
+    basedpyright = {
+        analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = 'openFilesOnly',
+            typeCheckingMode = 'off',
+        },
+    },
+})
 
 -- lspconfig.pylsp.setup {
 --     on_attach=on_attach,

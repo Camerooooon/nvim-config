@@ -1,7 +1,7 @@
 -- Default options:
 require('kanagawa').setup({
     compile = false,             -- enable compiling the colorscheme
-    undercurl = true,            -- enable undercurls
+    undercurl = false,            -- enable undercurls
     commentStyle = { italic = true },
     functionStyle = {},
     keywordStyle = { italic = true},
@@ -32,6 +32,11 @@ require('kanagawa').setup({
             NoiceConfirmBorder = { bg = colors.palette.sumiInk3, fg = colors.palette.autumnGreen, italic = true },
             NoiceCmdlineIcon = { bg = colors.palette.sumiInk3, fg = colors.palette.autumnRed, italic = true },
             NoiceConfirm = { bg = colors.palette.sumiInk3, fg = colors.palette.fujiWhite, italic = true },
+            DiagnosticSignWarn = { bg = colors.palette.sumiInk3 },
+            DiagnosticSignHint = { bg = colors.palette.sumiInk3 },
+            DiagnosticSignInfo = { bg = colors.palette.sumiInk3 },
+            DiagnosticSignOkay = { bg = colors.palette.sumiInk3 },
+            DiagnosticSignError = { bg = colors.palette.sumiInk3 },
         }
     end,
     theme = "wave",              -- Load "wave" theme when 'background' option is not set
@@ -42,3 +47,6 @@ require('kanagawa').setup({
 })
 
 vim.cmd.colorscheme "kanagawa"
+vim.cmd([[highlight DiagnosticUnderlineWarn gui=none]])
+
+vim.g.neovide_title_background_color = string.format("%x", vim.api.nvim_get_hl(0, {id=vim.api.nvim_get_hl_id_by_name("SignColumn")}).bg)

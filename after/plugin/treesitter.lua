@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "rust", "java", "vim", "vimdoc", "query", "norg", "markdown" },
+  ensure_installed = { "c", "rust", "java", "vim", "vimdoc", "query", "norg", "markdown", "python" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -24,6 +24,28 @@ require'nvim-treesitter.configs'.setup {
       enable = true,
   }
 }
+
+-- Use treesitter folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+vim.opt.foldcolumn = "0"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+vim.cmd([[
+set foldtext=CustomFoldText()
+
+function! CustomFoldText()
+  let indentation = indent(v:foldstart - 1)
+  let foldSize = 1 + v:foldend - v:foldstart
+  let foldSizeStr = " " . foldSize . " lines hidden "
+  let foldLevelStr = repeat("#", v:foldlevel)
+  let expansionString = repeat(" ", indentation)
+
+  return expansionString . foldLevelStr . foldSizeStr
+endfunction
+]])
 
 -- Use HTML syntax highlighting for .tera files
 vim.cmd([[

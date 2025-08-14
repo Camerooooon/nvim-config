@@ -36,3 +36,9 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
         vim.opt.cmdheight = 0
     end,
 })
+
+-- Neovide
+--
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0
+vim.g.neovide_normal_opacity = 0.98
