@@ -102,6 +102,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 lspconfig = require('lspconfig')
 
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+
 lspconfig.tinymist.setup {}
 
 lspconfig.clangd.setup { 
@@ -111,6 +113,7 @@ lspconfig.clangd.setup {
 
 -- vim.lsp.enable('jedi_language_server')
 
+vim.lsp.enable('json-lsp')
 vim.lsp.enable('basedpyright')
 
 vim.lsp.config('basedpyright', {

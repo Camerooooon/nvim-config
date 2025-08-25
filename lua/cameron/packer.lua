@@ -92,4 +92,8 @@ return require('packer').startup(function(use)
     use 'max397574/startup.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'stevearc/aerial.nvim'
+    use 'akinsho/toggleterm.nvim'
+    use 'saghen/blink.cmp'
+    use 'L3MON4D3/LuaSnip'
+    use "rafamadriz/friendly-snippets"
 end)
