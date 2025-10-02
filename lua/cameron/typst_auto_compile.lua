@@ -66,10 +66,14 @@ local function compile_real_file()
     vim.fn.jobstop(job_id)
   end
 
+  local full_path = vim.api.nvim_buf_get_name(0)
+  local directory = vim.fn.fnamemodify(full_path, ":h")
+
   local stderr = {}
 
   job_id = vim.fn.jobstart({ "typst", "compile", file }, {
     stderr_buffered = true,
+    cwd = directory,
     on_stderr = function(_, data, _)
       if data then
         for _, line in ipairs(data) do
