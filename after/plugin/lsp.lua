@@ -104,7 +104,7 @@ lspconfig = require('lspconfig')
 
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-lspconfig.tinymist.setup {}
+vim.lsp.config.tinymist = { cmd = {"tinymist"}, filetypes = {"typst"} }
 
 lspconfig.clangd.setup { 
      -- cmd = {"/home/cameron/.local/share/nvim/mason/bin/clangd", "--query-driver=/home/cameron/Repos/InfiniTime/eabi-gcc/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc"},
@@ -113,6 +113,7 @@ lspconfig.clangd.setup {
 
 -- vim.lsp.enable('jedi_language_server')
 
+vim.lsp.enable('tinymist')
 vim.lsp.enable('json-lsp')
 vim.lsp.enable('basedpyright')
 
