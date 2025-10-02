@@ -10,11 +10,43 @@ function pandoc_async()
         template_option = '--template=/home/cameron/Notebook/templates/paper.latex'
     else
         template_option = '--template=/home/cameron/Notebook/templates/default.latex'
+        --template_option = ''
     end
 
 
     --local template_option = filename:find("Essay") and '--template=/home/cameron/Notebook/templates/mla.latex --citeproc --csl=/home/cameron/csl/mla8.csl' or ''
-    local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf" --from=markdown -F /home/cameron/.config/nvim/latex_filters/chem.py --lua-filter /home/cameron/pandoc_lua_filters/wiki_links.lua ' .. template_option , {
+    local job_id = vim.fn.jobstart('pandoc "' .. filename .. '".md -o "' .. filename .. '.pdf" --from=markdown ' .. template_option , {
+    on_stderr = function(_, data, _)
+      print(data)
+    end,
+    on_stdout = function(_, data, _)
+      print(data)
+    end,
+    on_exit = function(_, code, _)
+      if code == 0 then
+        print("Pandoc command executed successfully.")
+      else
+        print("Pandoc command failed with code " .. code .. ".")
+      end
+    end,
+    detach = true,
+    cwd = vim.fn.expand('%:p:h'),
+  })
+
+  if job_id > 0 then
+    print("Pandoc command started in the background.")
+  else
+    print("Failed to start Pandoc command.")
+  end
+end
+
+function pandoc_tex_async()
+
+  local filename = vim.fn.expand('%:t:r')
+    print("Running pandoc command asynchronously for file: " .. filename .. "...")
+    local template_option
+
+    local job_id = vim.fn.jobstart('pdflatex "' .. filename .. '".tex', {
     on_stderr = function(_, data, _)
       print(data)
     end,
@@ -40,14 +72,16 @@ function pandoc_async()
 end
 
 vim.api.nvim_exec([[
-let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
-let g:pandoc#modules#enabled=["folding", "formatting"]
+let g:pandoc#filetypes#handled = ["markdown"]
+let g:pandoc#modules#enabled=["folding"]
 let g:pandoc#filetypes#pandoc_markdown = 0
 let g:pandoc#folding#fold_yaml = 1
 let g:pandoc#folding#foldlevel_yaml = 1
 let g:pandoc#folding#mode = "stacked"
 let g:pandoc#command#autoexec_on_writes = 0
-let g:pandoc#syntax#codeblocks#embeds#langs = ["rust", "python"]
+let g:pandoc#command#autoexec_on_writes = 0
+let g:pandoc#command#autoexec_command = ""
+let g:pandoc#syntax#codeblocks#embeds#langs = ["rust", "python", "c"]
 
 " For some reason folding will not work unless PandocFolding stacked is called after the document is loaded
 augroup AutoPandocFolding
@@ -58,10 +92,14 @@ augroup END
 augroup RunPandocAsync
     autocmd BufWritePost *.md silent lua pandoc_async()
 augroup END
+augroup RunPandocAsync
+    autocmd BufWritePost *.tex silent lua pandoc_tex_async()
+augroup END
 
 ]], false)
 
-vim.api.nvim_set_keymap("n", "<leader>t", ":lua FindAndOpenFile()<CR>", { noremap = true, silent = true })
+-- I don't use this anymore
+-- vim.api.nvim_set_keymap("n", "<leader>t", ":lua FindAndOpenFile()<CR>", { noremap = true, silent = true })
 function FindAndOpenFile()
     -- Get the current line and cursor position
     local line = vim.api.nvim_get_current_line()

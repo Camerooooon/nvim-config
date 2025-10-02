@@ -7,7 +7,6 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
-vim.keymap.set("n", "<leader>p", "<cmd>:AsyncRun zathura ''%<.pdf''<CR>")
 
 vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=']a<c-g>u")
 -- inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u

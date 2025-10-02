@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.2',
+		'nvim-telescope/telescope.nvim',-- tag = '0.1.2',
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
@@ -16,6 +16,8 @@ return require('packer').startup(function(use)
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('ThePrimeagen/harpoon')
 	use('mbbill/undotree')
+    use('folke/noice.nvim')
+    use('MunifTanjim/nui.nvim')
 	use({
 		"kdheepak/lazygit.nvim",
 		-- optional for floating window border decoration
@@ -50,7 +52,7 @@ return require('packer').startup(function(use)
         }
     use ("vim-pandoc/vim-pandoc-syntax")
     use ('skywind3000/asyncrun.vim')
-    use ('SirVer/ultisnips')
+    use {'SirVer/ultisnips'}
     use ('lervag/vimtex')
     use("quangnguyen30192/cmp-nvim-ultisnips")
     use { "catppuccin/nvim", as = "catppuccin" }
@@ -78,8 +80,20 @@ return require('packer').startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
-    use {
-        'nvimdev/dashboard-nvim',
-        requires = {'nvim-tree/nvim-web-devicons'}
-    }
+    use 'jbyuki/nabla.nvim'
+    use '3rd/image.nvim'
+    use 'nvim-neorg/tree-sitter-norg'
+    use 'sts10/vim-pink-moon'
+    use "rebelot/kanagawa.nvim"
+    use 'lewis6991/gitsigns.nvim'
+    use 'echasnovski/mini.nvim'
+    use 'FabijanZulj/blame.nvim'
+    use 'eandrju/cellular-automaton.nvim'
+    use 'max397574/startup.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
+    use 'stevearc/aerial.nvim'
+    use 'akinsho/toggleterm.nvim'
+    use 'saghen/blink.cmp'
+    use 'L3MON4D3/LuaSnip'
+    use "rafamadriz/friendly-snippets"
 end)

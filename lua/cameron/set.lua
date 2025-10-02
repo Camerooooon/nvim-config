@@ -23,4 +23,22 @@ vim.opt.scrolloff = 8
 vim.wo.fillchars='eob: '
 
 vim.opt.title = true
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
+vim.opt.showmode = false
+
+vim.api.nvim_create_autocmd("RecordingEnter", {
+    callback = function()
+        vim.opt.cmdheight = 1
+    end,
+})
+vim.api.nvim_create_autocmd("RecordingLeave", {
+    callback = function()
+        vim.opt.cmdheight = 0
+    end,
+})
+
+-- Neovide
+--
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0
+vim.g.neovide_normal_opacity = 0.98
